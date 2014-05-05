@@ -13,7 +13,18 @@
 		BAFDEF301917449D00909A33 /* cute_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BAFDEF2F1917449D00909A33 /* cute_image.jpg */; };
 		BAFDEF321917449D00909A33 /* nice_music.ogg in Resources */ = {isa = PBXBuildFile; fileRef = BAFDEF311917449D00909A33 /* nice_music.ogg */; };
 		BAFDEF341917449D00909A33 /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BAFDEF331917449D00909A33 /* sansation.ttf */; };
-		BAFDEF361917449D00909A33 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BAFDEF351917449D00909A33 /* icon.png */; };
+		BAFDEF361917449D00909A33 /* enemy.png in Resources */ = {isa = PBXBuildFile; fileRef = BAFDEF351917449D00909A33 /* enemy.png */; };
+		BAFDEF3D1917450800909A33 /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAFDEF3C1917450800909A33 /* Bullet.cpp */; };
+		BAFDEF401917451100909A33 /* BackgroundScroll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAFDEF3E1917451100909A33 /* BackgroundScroll.cpp */; };
+		BAFDEF4C191745B200909A33 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAFDEF44191745B200909A33 /* Enemy.cpp */; };
+		BAFDEF4D191745B200909A33 /* Enemyfire.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAFDEF46191745B200909A33 /* Enemyfire.cpp */; };
+		BAFDEF4E191745B200909A33 /* Movement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAFDEF48191745B200909A33 /* Movement.cpp */; };
+		BAFDEF4F191745B200909A33 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAFDEF4A191745B200909A33 /* Player.cpp */; };
+		BAFDEF531917491300909A33 /* death.wma in Resources */ = {isa = PBXBuildFile; fileRef = BAFDEF501917491300909A33 /* death.wma */; };
+		BAFDEF541917491300909A33 /* dyingenemy.wma in Resources */ = {isa = PBXBuildFile; fileRef = BAFDEF511917491300909A33 /* dyingenemy.wma */; };
+		BAFDEF551917491300909A33 /* shoot.wma in Resources */ = {isa = PBXBuildFile; fileRef = BAFDEF521917491300909A33 /* shoot.wma */; };
+		BAFDEF5719174A0900909A33 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = BAFDEF5619174A0900909A33 /* bullet.png */; };
+		BAFDEF5919174A1300909A33 /* deadplayer.png in Resources */ = {isa = PBXBuildFile; fileRef = BAFDEF5819174A1300909A33 /* deadplayer.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +37,24 @@
 		BAFDEF2F1917449D00909A33 /* cute_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cute_image.jpg; sourceTree = "<group>"; };
 		BAFDEF311917449D00909A33 /* nice_music.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = nice_music.ogg; sourceTree = "<group>"; };
 		BAFDEF331917449D00909A33 /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sansation.ttf; sourceTree = "<group>"; };
-		BAFDEF351917449D00909A33 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		BAFDEF351917449D00909A33 /* enemy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy.png; sourceTree = "<group>"; };
+		BAFDEF3C1917450800909A33 /* Bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
+		BAFDEF3E1917451100909A33 /* BackgroundScroll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackgroundScroll.cpp; sourceTree = "<group>"; };
+		BAFDEF3F1917451100909A33 /* BackgroundScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundScroll.h; sourceTree = "<group>"; };
+		BAFDEF411917451800909A33 /* Bullet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
+		BAFDEF44191745B200909A33 /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
+		BAFDEF45191745B200909A33 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
+		BAFDEF46191745B200909A33 /* Enemyfire.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemyfire.cpp; sourceTree = "<group>"; };
+		BAFDEF47191745B200909A33 /* Enemyfire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemyfire.h; sourceTree = "<group>"; };
+		BAFDEF48191745B200909A33 /* Movement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Movement.cpp; sourceTree = "<group>"; };
+		BAFDEF49191745B200909A33 /* Movement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movement.h; sourceTree = "<group>"; };
+		BAFDEF4A191745B200909A33 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		BAFDEF4B191745B200909A33 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		BAFDEF501917491300909A33 /* death.wma */ = {isa = PBXFileReference; lastKnownFileType = file; path = death.wma; sourceTree = "<group>"; };
+		BAFDEF511917491300909A33 /* dyingenemy.wma */ = {isa = PBXFileReference; lastKnownFileType = file; path = dyingenemy.wma; sourceTree = "<group>"; };
+		BAFDEF521917491300909A33 /* shoot.wma */ = {isa = PBXFileReference; lastKnownFileType = file; path = shoot.wma; sourceTree = "<group>"; };
+		BAFDEF5619174A0900909A33 /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
+		BAFDEF5819174A1300909A33 /* deadplayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deadplayer.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,9 +97,21 @@
 		BAFDEF261917449D00909A33 /* 2DShooter */ = {
 			isa = PBXGroup;
 			children = (
+				BAFDEF49191745B200909A33 /* Movement.h */,
+				BAFDEF47191745B200909A33 /* Enemyfire.h */,
+				BAFDEF45191745B200909A33 /* Enemy.h */,
+				BAFDEF3F1917451100909A33 /* BackgroundScroll.h */,
+				BAFDEF4B191745B200909A33 /* Player.h */,
+				BAFDEF411917451800909A33 /* Bullet.h */,
+				BAFDEF2C1917449D00909A33 /* main.cpp */,
+				BAFDEF4A191745B200909A33 /* Player.cpp */,
+				BAFDEF48191745B200909A33 /* Movement.cpp */,
+				BAFDEF44191745B200909A33 /* Enemy.cpp */,
+				BAFDEF46191745B200909A33 /* Enemyfire.cpp */,
+				BAFDEF3E1917451100909A33 /* BackgroundScroll.cpp */,
+				BAFDEF3C1917450800909A33 /* Bullet.cpp */,
 				BAFDEF291917449D00909A33 /* ResourcePath.mm */,
 				BAFDEF2B1917449D00909A33 /* ResourcePath.hpp */,
-				BAFDEF2C1917449D00909A33 /* main.cpp */,
 				BAFDEF2E1917449D00909A33 /* Resources */,
 				BAFDEF271917449D00909A33 /* Supporting Files */,
 			);
@@ -91,8 +131,13 @@
 			children = (
 				BAFDEF2F1917449D00909A33 /* cute_image.jpg */,
 				BAFDEF311917449D00909A33 /* nice_music.ogg */,
+				BAFDEF501917491300909A33 /* death.wma */,
+				BAFDEF5619174A0900909A33 /* bullet.png */,
+				BAFDEF511917491300909A33 /* dyingenemy.wma */,
+				BAFDEF5819174A1300909A33 /* deadplayer.png */,
+				BAFDEF521917491300909A33 /* shoot.wma */,
 				BAFDEF331917449D00909A33 /* sansation.ttf */,
-				BAFDEF351917449D00909A33 /* icon.png */,
+				BAFDEF351917449D00909A33 /* enemy.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -149,10 +194,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAFDEF361917449D00909A33 /* icon.png in Resources */,
+				BAFDEF361917449D00909A33 /* enemy.png in Resources */,
 				BAFDEF341917449D00909A33 /* sansation.ttf in Resources */,
 				BAFDEF321917449D00909A33 /* nice_music.ogg in Resources */,
+				BAFDEF551917491300909A33 /* shoot.wma in Resources */,
+				BAFDEF5919174A1300909A33 /* deadplayer.png in Resources */,
 				BAFDEF301917449D00909A33 /* cute_image.jpg in Resources */,
+				BAFDEF5719174A0900909A33 /* bullet.png in Resources */,
+				BAFDEF541917491300909A33 /* dyingenemy.wma in Resources */,
+				BAFDEF531917491300909A33 /* death.wma in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,7 +229,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAFDEF4F191745B200909A33 /* Player.cpp in Sources */,
+				BAFDEF401917451100909A33 /* BackgroundScroll.cpp in Sources */,
 				BAFDEF2D1917449D00909A33 /* main.cpp in Sources */,
+				BAFDEF4E191745B200909A33 /* Movement.cpp in Sources */,
+				BAFDEF4D191745B200909A33 /* Enemyfire.cpp in Sources */,
+				BAFDEF4C191745B200909A33 /* Enemy.cpp in Sources */,
+				BAFDEF3D1917450800909A33 /* Bullet.cpp in Sources */,
 				BAFDEF2A1917449D00909A33 /* ResourcePath.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -190,7 +246,7 @@
 		BAFDEF371917449D00909A33 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -202,7 +258,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -243,7 +299,7 @@
 		BAFDEF381917449D00909A33 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
@@ -251,7 +307,7 @@
 					/Library/Frameworks/,
 					"$(inherited)",
 				);
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -292,7 +348,10 @@
 		BAFDEF3A1917449D00909A33 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "2DShooter/2DShooter-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -300,7 +359,10 @@
 		BAFDEF3B1917449D00909A33 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "2DShooter/2DShooter-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
