@@ -7,7 +7,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include "Enemy.h"
-#include "Enemyfire.h"
+#include "EnemyBullet.h"
 
 class Player
 {

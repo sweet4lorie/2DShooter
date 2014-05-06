@@ -17,7 +17,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Bullet.h"
-#include "Enemyfire.h"
+#include "EnemyBullet.h"
 #include "Movement.h"
 #include "BackgroundScroll.h"
 #include <time.h>
@@ -63,7 +63,7 @@ int main()
 
 	// Create Sprite
 	Player sprite;
-	Player * Ptr = &sprite;
+	//Player * Ptr = &sprite;
 	Movement movement;
 
 	// Create "enemy"
@@ -95,7 +95,7 @@ int main()
 			// Keyboard Movement
 			if (event.type == sf::Event::KeyPressed)
 			{
-				movement.Keyboard(event.key.code, sprite);
+				movement.Keyboard(sprite);
 			}
 
 			// Fire bullets
@@ -124,7 +124,7 @@ int main()
 		}
 		for (int i=0;i<numofenemies;i++)
 		{
-			if (i == random % 900)
+			if (i == random % 400)
 			{
 				if (enemies[i].active == true)
 					enemybullets[i].setpos(enemybullets, ebullets, enemies[i].enemy.getPosition().x,enemies[i].enemy.getPosition().y);
@@ -161,6 +161,9 @@ int main()
 		// Move enemy bullets and reset them once offscreen
 		enemybullets[ebullets].move(enemybullets, ebullets);
 		enemybullets[ebullets].reset(enemybullets, ebullets);
+        
+        // Enemy movement
+        enemies[enemynumber].move(enemies, enemynumber, 0);
 
 		// Background Scroll
 		background.Scroll();

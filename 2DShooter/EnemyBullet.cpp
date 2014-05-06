@@ -1,4 +1,4 @@
-#include "Enemyfire.h"
+#include "EnemyBullet.h"
 // Here is a small helper for you ! Have a look.
 #include "ResourcePath.hpp"
 
