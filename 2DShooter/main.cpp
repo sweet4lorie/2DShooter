@@ -21,8 +21,6 @@
 #include "Movement.h"
 #include "BackgroundScroll.h"
 #include <time.h>
-// Here is a small helper for you ! Have a look.
-#include "ResourcePath.hpp"
 
 using namespace std;
 
@@ -40,11 +38,11 @@ int main()
 
 	// Load texture
 	sf::Texture etexture;
-	etexture.loadFromFile(resourcePath() + "enemy.png");
+	etexture.loadFromFile("enemy.png");
 	sf::Texture deadtexture;
-	deadtexture.loadFromFile(resourcePath() + "deadplayer.png");
+	deadtexture.loadFromFile("deadplayer.png");
 	sf::Texture bull;
-	bull.loadFromFile(resourcePath() + "bullet.png");
+	bull.loadFromFile("bullet.png");
 
 	// Load sounds
 	
@@ -55,17 +53,17 @@ int main()
 	sf::SoundBuffer sdeath;
 	sf::Sound death;
 
-	sdeath.loadFromFile(resourcePath() + "death.wma");
+	sdeath.loadFromFile("death.wma");
 	death.setBuffer(sdeath);
-	skill.loadFromFile(resourcePath() + "dyingenemy.wma");
+	skill.loadFromFile("dyingenemy.wma");
 	kill.setBuffer(skill);
-	sshoot.loadFromFile(resourcePath() + "shoot.wma");
+	sshoot.loadFromFile("shoot.wma");
 	shoot.setBuffer(sshoot);
 	
 
 	// Create Sprite
 	Player sprite;
-	//Player * Ptr = &sprite;
+	Player * Ptr = &sprite;
 	Movement movement;
 
 	// Create "enemy"
@@ -97,20 +95,19 @@ int main()
 			// Keyboard Movement
 			if (event.type == sf::Event::KeyPressed)
 			{
-				movement.Keyboard(sprite);
+				movement.Keyboard(event.key.code, sprite);
 			}
 
 			// Fire bullets
 			if ((event.type == sf::Event::KeyReleased) && (event.key.code == sf::Keyboard::Space) && (sprite.active == true))
 			{
-				if (frames >= 500)
+				if (frames >= 400)
 				{
 					shoot.play();
 					Bullets[num].setpos(Bullets,num,sprite.player.getPosition().x,sprite.player.getPosition().y);
 					frames = 0;
 				}
 			}
-            
 		}
 		frames += 1;
 
@@ -151,10 +148,8 @@ int main()
 		// Check if enemies are dead
 		for(int t=0;t<=enemynumber;t++)
 		{
-            // move enemies
 			enemies[t].isdead(enemies[t],kill);
 		}
-        enemies[enemynumber].move(enemies, enemynumber, 0);
 
 		// Check if player life is 0
 		sprite.isdead(sprite,death);
@@ -166,10 +161,7 @@ int main()
 		// Move enemy bullets and reset them once offscreen
 		enemybullets[ebullets].move(enemybullets, ebullets);
 		enemybullets[ebullets].reset(enemybullets, ebullets);
-        
-        //move enemies
-        enemies[enemynumber].move(enemies, enemynumber, 0);
-        
+
 		// Background Scroll
 		background.Scroll();
 
