@@ -6,7 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>  
 #include <SFML/Window.hpp>
-//#include <random>
+#include <random>
 #include "Bullet.h"
 
 class Enemy

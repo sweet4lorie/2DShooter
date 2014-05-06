@@ -22,31 +22,28 @@
 #include "BackgroundScroll.h"
 #include <time.h>
 
-// Here is a small helper for you ! Have a look.
-#include "ResourcePath.hpp"
-
 using namespace std;
 
 int main()
 {
 	// Create Window
 	sf::RenderWindow window(sf::VideoMode(800, 600), "Sample Window");
-    
+
 	// Create background sprite
 	BGscroll background;
 	int num = 0;
 	srand(time(NULL));
 	int random;
 	int frames = 400;
-    
+
 	// Load texture
-	sf::Image etexture;
-	etexture.loadFromFile(resourcePath() + "enemy.png");
+	sf::Texture etexture;
+	etexture.loadFromFile("enemy.png");
 	sf::Texture deadtexture;
-	deadtexture.loadFromFile(resourcePath() + "deadplayer.png");
+	deadtexture.loadFromFile("deadplayer.png");
 	sf::Texture bull;
-	bull.loadFromFile(resourcePath() + "bullet.png");
-    
+	bull.loadFromFile("bullet.png");
+
 	// Load sounds
 	
 	sf::SoundBuffer sshoot;
@@ -55,27 +52,27 @@ int main()
 	sf::Sound kill;
 	sf::SoundBuffer sdeath;
 	sf::Sound death;
-    
-	sdeath.loadFromFile(resourcePath() + "death.wma");
+
+	sdeath.loadFromFile("death.wma");
 	death.setBuffer(sdeath);
-	skill.loadFromFile(resourcePath() + "dyingenemy.wma");
+	skill.loadFromFile("dyingenemy.wma");
 	kill.setBuffer(skill);
-	sshoot.loadFromFile(resourcePath() + "shoot.wma");
+	sshoot.loadFromFile("shoot.wma");
 	shoot.setBuffer(sshoot);
 	
-    
+
 	// Create Sprite
 	Player sprite;
-	//Player * Ptr = &sprite;
+	Player * Ptr = &sprite;
 	Movement movement;
-    
+
 	// Create "enemy"
 	std::vector<Enemy> enemies;
 	Enemy enemy;
 	int numofenemies = 0;
 	int enemynumber = 20;
 	enemy.generate(enemies, enemynumber);
-    
+
 	// Generate Bullets
 	std::vector<Bullet> Bullets;
 	Bullet shot;
@@ -84,36 +81,36 @@ int main()
 	Ebullet shot2;
 	shot2.genBullet(enemybullets);
 	int ebullets = 0;
-    
+
 	while (window.isOpen())
 	{
 		
-        
+
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-            
+
 			// Keyboard Movement
 			if (event.type == sf::Event::KeyPressed)
 			{
 				movement.Keyboard(event.key.code, sprite);
 			}
-            
+
 			// Fire bullets
 			if ((event.type == sf::Event::KeyReleased) && (event.key.code == sf::Keyboard::Space) && (sprite.active == true))
 			{
 				if (frames >= 400)
 				{
-					//shoot.play();
+					shoot.play();
 					Bullets[num].setpos(Bullets,num,sprite.player.getPosition().x,sprite.player.getPosition().y);
 					frames = 0;
 				}
 			}
 		}
 		frames += 1;
-        
+
 		// Spawn enemy
 		random = std::rand();
 		if(1 == (random % 3000))
@@ -147,16 +144,16 @@ int main()
 			for (int j=0;j<enemynumber;j++)
 				enemies[j].collision(enemies[j],Bullets[t]);
 		}
-        
+
 		// Check if enemies are dead
 		for(int t=0;t<=enemynumber;t++)
 		{
 			enemies[t].isdead(enemies[t],kill);
 		}
-        
+
 		// Check if player life is 0
 		sprite.isdead(sprite,death);
-        
+
 		// Move bullets and reset them once offscreen
 		Bullets[num].move(Bullets, num);
 		Bullets[num].reset(Bullets, num);
@@ -164,10 +161,10 @@ int main()
 		// Move enemy bullets and reset them once offscreen
 		enemybullets[ebullets].move(enemybullets, ebullets);
 		enemybullets[ebullets].reset(enemybullets, ebullets);
-        
+
 		// Background Scroll
 		background.Scroll();
-        
+
 		// Display
 		window.clear();
 		window.draw(background.bgsprite);
@@ -188,5 +185,5 @@ int main()
 		window.display();
 	}
 	return 0;
-    
+
 }
