@@ -9,7 +9,7 @@ void Bullet::genBullet(std::vector<Bullet> &Bullets)
 	{
 		Bullet shell;
 		shell.bullets.setTexture(BulletImage);
-		shell.bullets.scale(0.1f,0.1f);
+		//shell.bullets.scale(0.1f,0.1f);
 		shell.bullets.setPosition(-40,-40);
 		Bullets.push_back(shell);
 	}
@@ -32,7 +32,7 @@ int Bullet::move(std::vector<Bullet> &Bullets,int num)
 	{
 		if(Bullets[j].activeB == true)
 		{
-			Bullets[j].bullets.move(.7f,0);
+			Bullets[j].bullets.move(.5f,0);
 		}
 	}
 	return num;

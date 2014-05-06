@@ -12,7 +12,6 @@
 		BAFDEF2D1917449D00909A33 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAFDEF2C1917449D00909A33 /* main.cpp */; };
 		BAFDEF3D1917450800909A33 /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAFDEF3C1917450800909A33 /* Bullet.cpp */; };
 		BAFDEF401917451100909A33 /* BackgroundScroll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAFDEF3E1917451100909A33 /* BackgroundScroll.cpp */; };
-		BAFDEF4C191745B200909A33 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAFDEF44191745B200909A33 /* Enemy.cpp */; };
 		BAFDEF4D191745B200909A33 /* Enemyfire.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAFDEF46191745B200909A33 /* Enemyfire.cpp */; };
 		BAFDEF4E191745B200909A33 /* Movement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAFDEF48191745B200909A33 /* Movement.cpp */; };
 		BAFDEF4F191745B200909A33 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAFDEF4A191745B200909A33 /* Player.cpp */; };
@@ -23,6 +22,7 @@
 		BAFDEF6719188E5D00909A33 /* plane_up.png in Resources */ = {isa = PBXBuildFile; fileRef = BAFDEF6019188E5D00909A33 /* plane_up.png */; };
 		BAFDEF6A1918903700909A33 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = BAFDEF681918903700909A33 /* bullet.png */; };
 		BAFDEF6B1918903700909A33 /* enemybullet.png in Resources */ = {isa = PBXBuildFile; fileRef = BAFDEF691918903700909A33 /* enemybullet.png */; };
+		BAFDEF6E191899E100909A33 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAFDEF6C191899E100909A33 /* Enemy.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,8 +36,6 @@
 		BAFDEF3E1917451100909A33 /* BackgroundScroll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackgroundScroll.cpp; sourceTree = "<group>"; };
 		BAFDEF3F1917451100909A33 /* BackgroundScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundScroll.h; sourceTree = "<group>"; };
 		BAFDEF411917451800909A33 /* Bullet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
-		BAFDEF44191745B200909A33 /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
-		BAFDEF45191745B200909A33 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		BAFDEF46191745B200909A33 /* Enemyfire.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemyfire.cpp; sourceTree = "<group>"; };
 		BAFDEF47191745B200909A33 /* Enemyfire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemyfire.h; sourceTree = "<group>"; };
 		BAFDEF48191745B200909A33 /* Movement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Movement.cpp; sourceTree = "<group>"; };
@@ -51,6 +49,8 @@
 		BAFDEF6019188E5D00909A33 /* plane_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane_up.png; sourceTree = "<group>"; };
 		BAFDEF681918903700909A33 /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
 		BAFDEF691918903700909A33 /* enemybullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemybullet.png; sourceTree = "<group>"; };
+		BAFDEF6C191899E100909A33 /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
+		BAFDEF6D191899E100909A33 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,14 +95,14 @@
 			children = (
 				BAFDEF49191745B200909A33 /* Movement.h */,
 				BAFDEF47191745B200909A33 /* Enemyfire.h */,
-				BAFDEF45191745B200909A33 /* Enemy.h */,
+				BAFDEF6D191899E100909A33 /* Enemy.h */,
 				BAFDEF3F1917451100909A33 /* BackgroundScroll.h */,
 				BAFDEF4B191745B200909A33 /* Player.h */,
 				BAFDEF411917451800909A33 /* Bullet.h */,
 				BAFDEF2C1917449D00909A33 /* main.cpp */,
 				BAFDEF4A191745B200909A33 /* Player.cpp */,
 				BAFDEF48191745B200909A33 /* Movement.cpp */,
-				BAFDEF44191745B200909A33 /* Enemy.cpp */,
+				BAFDEF6C191899E100909A33 /* Enemy.cpp */,
 				BAFDEF46191745B200909A33 /* Enemyfire.cpp */,
 				BAFDEF3E1917451100909A33 /* BackgroundScroll.cpp */,
 				BAFDEF3C1917450800909A33 /* Bullet.cpp */,
@@ -226,8 +226,8 @@
 				BAFDEF2D1917449D00909A33 /* main.cpp in Sources */,
 				BAFDEF4E191745B200909A33 /* Movement.cpp in Sources */,
 				BAFDEF4D191745B200909A33 /* Enemyfire.cpp in Sources */,
-				BAFDEF4C191745B200909A33 /* Enemy.cpp in Sources */,
 				BAFDEF3D1917450800909A33 /* Bullet.cpp in Sources */,
+				BAFDEF6E191899E100909A33 /* Enemy.cpp in Sources */,
 				BAFDEF2A1917449D00909A33 /* ResourcePath.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
