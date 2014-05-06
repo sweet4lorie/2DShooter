@@ -10,7 +10,7 @@
 class Movement
 {
 public:
-	void Keyboard(sf::Keyboard::Key button,Player &player);
+	void Keyboard(Player &player);
 
 private:
 };

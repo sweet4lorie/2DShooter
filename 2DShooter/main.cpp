@@ -97,9 +97,8 @@ int main()
 			// Keyboard Movement
 			if (event.type == sf::Event::KeyPressed)
 			{
-				movement.Keyboard(event.key.code, sprite);
+				movement.Keyboard(sprite);
 			}
-            cout << sf::Event::KeyPressed;
 
 			// Fire bullets
 			if ((event.type == sf::Event::KeyReleased) && (event.key.code == sf::Keyboard::Space) && (sprite.active == true))
