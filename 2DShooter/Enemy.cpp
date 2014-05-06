@@ -1,4 +1,6 @@
 #include "Enemy.h"
+// Here is a small helper for you ! Have a look.
+#include "ResourcePath.hpp"
 
 Enemy::Enemy()
 {
@@ -8,12 +10,12 @@ Enemy::Enemy()
 }
 void Enemy::generate(std::vector<Enemy> &foes, int number)
 {
-	imgenemy.loadFromFile("Enemy.png");
+	imgenemy.loadFromFile(resourcePath() + "enemy.png");
 	for(int i=0;i<= number;i++)
 	{
 		Enemy create;
 		create.enemy.setTexture(imgenemy);
-		create.enemy.scale(.3f,.3f);
+		//create.enemy.scale(.3f,.3f);
 		create.enemy.setPosition(-500,300);
 		foes.push_back(create);
 	}

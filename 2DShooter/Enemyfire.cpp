@@ -1,13 +1,15 @@
 #include "Enemyfire.h"
+// Here is a small helper for you ! Have a look.
+#include "ResourcePath.hpp"
 
 void Ebullet::genBullet(std::vector<Ebullet> &bulls)
 {
-	BulletImage.loadFromFile("enemybullet.png");
+	BulletImage.loadFromFile(resourcePath() + "enemybullet.png");
     for(int i=0;i<= 80;i++)
 	{
 		Ebullet shell;
 		shell.bullets.setTexture(BulletImage);
-		shell.bullets.scale(0.1f,0.1f);
+		//shell.bullets.scale(0.1f,0.1f);
 		shell.bullets.setPosition(-40,-40);
 		bulls.push_back(shell);
 	}

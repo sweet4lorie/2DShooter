@@ -21,6 +21,8 @@
 #include "Movement.h"
 #include "BackgroundScroll.h"
 #include <time.h>
+// Here is a small helper for you ! Have a look.
+#include "ResourcePath.hpp"
 
 using namespace std;
 
@@ -38,11 +40,11 @@ int main()
 
 	// Load texture
 	sf::Texture etexture;
-	etexture.loadFromFile("enemy.png");
+	etexture.loadFromFile(resourcePath() + "enemy.png");
 	sf::Texture deadtexture;
-	deadtexture.loadFromFile("deadplayer.png");
+	deadtexture.loadFromFile(resourcePath() + "deadplayer.png");
 	sf::Texture bull;
-	bull.loadFromFile("bullet.png");
+	bull.loadFromFile(resourcePath() + "bullet.png");
 
 	// Load sounds
 	
@@ -53,17 +55,17 @@ int main()
 	sf::SoundBuffer sdeath;
 	sf::Sound death;
 
-	sdeath.loadFromFile("death.wma");
+	sdeath.loadFromFile(resourcePath() + "death.wma");
 	death.setBuffer(sdeath);
-	skill.loadFromFile("dyingenemy.wma");
+	skill.loadFromFile(resourcePath() + "dyingenemy.wma");
 	kill.setBuffer(skill);
-	sshoot.loadFromFile("shoot.wma");
+	sshoot.loadFromFile(resourcePath() + "shoot.wma");
 	shoot.setBuffer(sshoot);
 	
 
 	// Create Sprite
 	Player sprite;
-	Player * Ptr = &sprite;
+	//Player * Ptr = &sprite;
 	Movement movement;
 
 	// Create "enemy"
@@ -97,6 +99,7 @@ int main()
 			{
 				movement.Keyboard(event.key.code, sprite);
 			}
+            cout << sf::Event::KeyPressed;
 
 			// Fire bullets
 			if ((event.type == sf::Event::KeyReleased) && (event.key.code == sf::Keyboard::Space) && (sprite.active == true))

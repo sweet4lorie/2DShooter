@@ -1,8 +1,10 @@
 #include "Bullet.h"
+// Here is a small helper for you ! Have a look.
+#include "ResourcePath.hpp"
 
 void Bullet::genBullet(std::vector<Bullet> &Bullets)
 {
-	BulletImage.loadFromFile("bullet.png");
+	BulletImage.loadFromFile(resourcePath() +  "bullet.png");
     for(int i=0;i<= 200;i++)
 	{
 		Bullet shell;

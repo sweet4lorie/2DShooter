@@ -1,11 +1,13 @@
 #include "Player.h"
+// Here is a small helper for you ! Have a look.
+#include "ResourcePath.hpp"
 
 Player::Player()
 {
 	health = 100;
 	active = true;
 
-	img.loadFromFile("image.gif");
+	img.loadFromFile(resourcePath() + "image.png");
 	player.setTexture(img);
 	player.setPosition(80,200);
 }
