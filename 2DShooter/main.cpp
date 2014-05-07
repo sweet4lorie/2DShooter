@@ -23,144 +23,150 @@
 #include <time.h>
 #include "ResourcePath.hpp"
 
+void InitGame();
+void GotoTitleScreen(sf::RenderWindow *gameWindow);
+
 using namespace std;
+
 
 int main()
 {
 	// Create Window
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Sample Window");
+	sf::RenderWindow window(sf::VideoMode(800, 600), "Raging Bullets");
     window.setFramerateLimit(60);
 
 	// Create background sprite and function variables
 	BGscroll background;
-	int num = 0;
-	srand(time(NULL));
+	int num;
 	int random;
-	int frames = 60;
-	bool bossbool = false;
-	bool boss_set = false;
-	bool bmove = true;
-	bool paused = false;
-	bool start = true;
+	int frames;
+	bool bossbool;
+	bool boss_set;
+	bool bmove;
+	bool paused;
 
-	// Load text
+    // Load
 	sf::Font fonty;
-	fonty.loadFromFile(resourcePath() + "Verdana.ttf");
-	
     sf::Texture stextimage;
     sf::Sprite stext;
-	stextimage.loadFromFile(resourcePath() + "RBtitle.png");
-    stext.setTexture(stextimage);
-    stext.setPosition(70,180);
-
     sf::Texture mtextimage;
     sf::Sprite mtext;
-	mtextimage.loadFromFile(resourcePath() + "text_entertostart.png");
-    mtext.setTexture(mtextimage);
-    mtext.setPosition(200,400);
-    
-
-	sf::Text wtext;
-	wtext.setFont(fonty);
-	wtext.setString("CONGRATULATIONS!!");
-	wtext.setCharacterSize(46);
-	wtext.setStyle(sf::Text::Bold);
-	wtext.setColor(sf::Color::Red);
-	wtext.setPosition(310,280);
-
-	sf::Text ptext;
-	ptext.setFont(fonty);
-	ptext.setString("PAUSED");
-	ptext.setCharacterSize(46);
-	ptext.setStyle(sf::Text::Bold);
-	ptext.setColor(sf::Color::Green);
-	ptext.setPosition(310,280);
-
-	// Load texture
+    sf::Texture ptextimage;
+    sf::Sprite ptext;
+    sf::Texture wtextimage;
+    sf::Sprite wtext;
 	sf::Texture btexture;
-	btexture.loadFromFile(resourcePath() + "Boss.png");
 	sf::Texture etexture;
-	etexture.loadFromFile(resourcePath() + "enemy.png");
 	sf::Texture deadtexture;
-	deadtexture.loadFromFile(resourcePath() + "deadplayer.png");
 	sf::Texture bull;
-	bull.loadFromFile(resourcePath() + "bullet.png");
-
-	// Load sounds
+    sf::Sound shoot;
+    sf::Sound kill;
+    sf::Sound death;
 	sf::SoundBuffer sshoot;
-	sf::Sound shoot;
 	sf::SoundBuffer skill;
-	sf::Sound kill;
 	sf::SoundBuffer sdeath;
-	sf::Sound death;
-
-	sdeath.loadFromFile("death.wma");
-	death.setBuffer(sdeath);
-	skill.loadFromFile("dyingenemy.wma");
-	kill.setBuffer(skill);
-	sshoot.loadFromFile("shoot.wma");
-	shoot.setBuffer(sshoot);
-	
-
-	// Create Sprite
+    // Create Sprite
 	Player sprite;
 	//Player * Ptr = &sprite;
 	Movement movement;
-
 	// Create "enemy" and boss
 	std::vector<Enemy> enemies;
 	Enemy enemy;
-	int numofenemies = 0;
-	int enemynumber = 20;
-	enemy.generate(enemies, enemynumber);
-
+	int numofenemies;
+	int enemynumber;
 	Enemy boss;
-	boss.health = 400;
-	boss.active = true;
-	boss.enemy.setTexture(btexture);
-	boss.enemy.setPosition(-800,-800);
-
-	// Generate Bullets
-	std::vector<Bullet> Bullets;
+    std::vector<Bullet> Bullets;
 	Bullet shot;
-	shot.genBullet(Bullets);
-	std::vector<Ebullet> enemybullets;
+    std::vector<Ebullet> enemybullets;
 	Ebullet shot2;
-	shot2.genBullet(enemybullets);
-	int ebullets = 0;
+    int ebullets;
+    bool isNewGame = true;
+    
 
+    srand(time(NULL));
+    
 	while (window.isOpen())
 	{
-		if (start)//beginning of start menu Eric 5/6
-                {
-                        sf::Event event;
-                        while (window.pollEvent(event))
-                        {
-                                if (event.type == sf::Event::Closed)
-                                        window.close();
- 
-                                // Detect enter press
-                                if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
-                                {
-                                        start = false;
-                                        //place player in starting position, or move ship to the right for N frames. frames += 1; not included
-                                }
-                        }
-						window.clear();
-						window.draw(background.bgsprite);
-						window.draw(stext);
-						window.draw(mtext);
-						window.display();
-                        //afterwards, move player to the right for N frames, or place in playing field
-                }//end of start menu Eric 5/6
-		else
-		{
+        if (isNewGame)
+        {
+            num = 0;
+            frames = 60;
+            bossbool = false;
+            boss_set = false;
+            bmove = true;
+            paused = false;
+            
+            fonty.loadFromFile(resourcePath() + "Verdana.ttf");
+            
+            stextimage.loadFromFile(resourcePath() + "RBtitle.png");
+            stext.setTexture(stextimage);
+            stext.setPosition(70,180);
+            
+            mtextimage.loadFromFile(resourcePath() + "text_entertostart.png");
+            mtext.setTexture(mtextimage);
+            mtext.setPosition(210,350);
+            
+            wtextimage.loadFromFile(resourcePath() + "text_youwon.png");
+            wtext.setTexture(wtextimage);
+            wtext.setPosition(100,220);
+            
+            ptextimage.loadFromFile(resourcePath() + "text_pause.png");
+            ptext.setTexture(ptextimage);
+            ptext.setPosition(240,250);
+            
+            
+            // Load texture
+            btexture.loadFromFile(resourcePath() + "Boss.png");
+            etexture.loadFromFile(resourcePath() + "enemy.png");
+            deadtexture.loadFromFile(resourcePath() + "deadplayer.png");
+            bull.loadFromFile(resourcePath() + "bullet.png");
+            
+            // Load sounds
+            sdeath.loadFromFile("death.wma");
+            death.setBuffer(sdeath);
+            skill.loadFromFile("dyingenemy.wma");
+            kill.setBuffer(skill);
+            sshoot.loadFromFile("shoot.wma");
+            shoot.setBuffer(sshoot);
+            
+            sprite.Reset();
+            enemy.Reset();
+            boss.Reset();
+            
+            numofenemies = 0;
+            enemynumber = 20;
+            enemy.generate(enemies, enemynumber);
+            enemies.clear();
+            Bullets.clear();
+            enemybullets.clear();
+            
+            boss.health = 400;
+            boss.active = true;
+            boss.enemy.setTexture(btexture);
+            boss.enemy.setPosition(-800,-800);
+            
+            // Generate Bullets
+            shot.genBullet(Bullets);
+            
+            shot2.genBullet(enemybullets);
+            ebullets = 0;
+            
+            GotoTitleScreen(&window);
 
+            isNewGame = false;
+        }
+        
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
+            
+            // game genie code: press 0 to spawn boss
+			if (!bossbool && (event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Num0))
+            {
+                bossbool = true;
+            }
 
 			// Pause Game
 			if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::P))
@@ -187,13 +193,13 @@ int main()
 			// Keyboard Movement
 			if (event.type == sf::Event::KeyPressed)
 			{
-				movement.Keyboard(sprite);
+				movement.PollKeyboard(sprite);
 			}
 
 			// Fire bullets
 			if ((event.type == sf::Event::KeyReleased) && (event.key.code == sf::Keyboard::Space) && (sprite.active == true))
 			{
-				if (frames >= 400)
+				//if (frames >= 60)
 				{
 					shoot.play();
 					Bullets[num].setpos(Bullets,num,sprite.player.getPosition().x,sprite.player.getPosition().y);
@@ -205,7 +211,7 @@ int main()
 
 		// Spawn enemy
 		random = std::rand();
-		if(1 == (random % 6000))
+		if(1 == (random % 120))
 		{
 			if(numofenemies <enemynumber)
 			{
@@ -218,7 +224,7 @@ int main()
 		// Fire bullets for active enemies
 		for (int i=0;i<numofenemies;i++)
 		{
-			if (i == random % 1000)
+			if (i == random % 60)
 			{
 				if (enemies[i].active == true)
 				{
@@ -234,6 +240,15 @@ int main()
 			// Set Position
 			if (boss_set == false)
 			{
+                // clear the screen of all prior enemies
+                numofenemies = 0;
+                enemynumber = 0;
+                ebullets = 0;
+                enemy.generate(enemies, enemynumber);
+                enemies.clear();
+                Bullets.clear();
+                enemybullets.clear();
+                
 				boss.enemy.setPosition(650,300);
 				boss_set = true;
 			}
@@ -259,7 +274,7 @@ int main()
 						bmove = true;
 				}
 			}
-			if (5 == random % 90)
+			if (5 == random % 20)
 			{
 				if (boss.active == true)
 				{
@@ -287,14 +302,17 @@ int main()
 						if ((gamewon.type == sf::Event::KeyPressed) && (gamewon.key.code == sf::Keyboard::Return))
 						{
 							win = false;
-							window.close();
+
+                            isNewGame = true;
+                            
+                            break;
 						}
 					}
-					window.clear();
-					window.draw(background.bgsprite);
-					window.draw(sprite.player);
-					window.draw(wtext);
-					window.display();
+                    window.clear();
+                    window.draw(background.bgsprite);
+                    window.draw(sprite.player);
+                    window.draw(wtext);
+                    window.display();
 				}
 			}
 		}
@@ -328,14 +346,25 @@ int main()
 		}
 
 		// Check if player life is 0
-		sprite.isdead(sprite,death);
+		if (!sprite.isdead(sprite,death))
+        {
+            isNewGame = true;
+        }
 
 		// Move bullets and reset them once offscreen
 		Bullets[num].move(Bullets, num);
 		Bullets[num].reset(Bullets, num);
 		
 		// Move enemy bullets and reset them once offscreen
-		enemybullets[ebullets].move(enemybullets, ebullets);
+        if (bossbool)
+        {
+            enemybullets[ebullets].move(enemybullets, ebullets, -10.5);
+        }
+        else
+        {
+            enemybullets[ebullets].move(enemybullets, ebullets);
+        }
+        
 		enemybullets[ebullets].reset(enemybullets, ebullets);
         
         // Enemy movement
@@ -360,11 +389,64 @@ int main()
 			if (enemy.active == true)
 				window.draw(enemies[t].enemy);
 		}
+        
 		window.draw(sprite.player);
 		window.draw(boss.enemy);
 		window.display();
+        
+        if (!sprite.isdead(sprite,death))
+        {
+            sf::sleep(sf::seconds(1.5f));
+        }
 	}
-	}
+
 	return 0;
 
+}
+
+
+void GotoTitleScreen(sf::RenderWindow *gameWindow)
+{
+    bool isTitleScreenFinished = false;
+    BGscroll background;
+    sf::Event event;
+    sf::Texture stextimage;
+    sf::Sprite stext;
+    sf::Texture mtextimage;
+    sf::Sprite mtext;
+    
+    
+	stextimage.loadFromFile(resourcePath() + "RBtitle.png");
+    stext.setTexture(stextimage);
+    stext.setPosition(70,180);
+    
+	mtextimage.loadFromFile(resourcePath() + "text_entertostart.png");
+    mtext.setTexture(mtextimage);
+    mtext.setPosition(210,350);
+
+    gameWindow->clear();
+    gameWindow->draw(background.bgsprite);
+    gameWindow->draw(stext);
+    gameWindow->draw(mtext);
+    gameWindow->display();
+    
+    while (!isTitleScreenFinished) //beginning of start menu Eric 5/6
+	{
+        while (gameWindow->pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                gameWindow->close();
+            }
+            
+            // Detect enter press
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
+            {
+                isTitleScreenFinished = !isTitleScreenFinished;
+                
+                break;
+            }
+        }
+
+    } //end of start menu Eric 5/6
 }

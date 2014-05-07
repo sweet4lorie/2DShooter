@@ -16,7 +16,7 @@ public:
 
 		void genBullet(std::vector<Ebullet> &bulls);
 		void setpos(std::vector<Ebullet> &bulls,int &num, float x, float y);
-		int move(std::vector<Ebullet> &bulls, int num);
+		int move(std::vector<Ebullet> &bulls, int num, float speed = -5.25f);
 		void draw(sf::RenderWindow &window);
 		void reset(std::vector<Ebullet> &bulls, int num);
 

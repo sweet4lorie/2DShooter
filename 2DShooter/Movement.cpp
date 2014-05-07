@@ -1,28 +1,50 @@
 #include "Movement.h"
 
-void Movement::Keyboard(Player &player)
+
+void Movement::PollKeyboard(Player &player)
 {
-	if (player.active == true)
+    Keyboard keyboard;
+    
+    
+	if (player.active)
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-				{
-					if (player.player.getPosition().x >= 0)
-						player.player.move(-10, 0);
-				}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-				{
-					if (player.player.getPosition().x <= 730)
-					player.player.move(10, 0);
-				}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-				{
-					if (player.player.getPosition().y >= 0)
-					player.player.move(0,-10);
-				}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-				{
-					if (player.player.getPosition().y <= 500)
-					player.player.move(0,10);
-				}
+		if (IsKeyPressed(keyboard.A) || IsKeyPressed(keyboard.Left))
+        {
+            if (player.player.getPosition().x >= 0)
+            {
+                player.player.move(-10, 0);
+            }
+        }
+		
+        if (IsKeyPressed(keyboard.D) || IsKeyPressed(keyboard.Right))
+        {
+            if (player.player.getPosition().x <= 730)
+            {
+                player.player.move(10, 0);
+            }
+        }
+        
+		if (IsKeyPressed(keyboard.W) || IsKeyPressed(keyboard.Up))
+        {
+            if (player.player.getPosition().y >= 0)
+            {
+                player.player.move(0,-10);
+            }
+        }
+            
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        {
+            if (player.player.getPosition().y <= 500)
+            {
+                player.player.move(0,10);
+            }
+        }
 	}
+}
+
+
+// private helpers
+bool Movement::IsKeyPressed(Key key)
+{
+    return Keyboard::isKeyPressed(key);
 }

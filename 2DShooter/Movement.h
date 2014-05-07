@@ -7,10 +7,14 @@
 #include <SFML/Window.hpp>
 #include "Player.h"
 
+typedef sf::Keyboard::Key Key;
+typedef sf::Keyboard Keyboard;
+
 class Movement
 {
 public:
-	void Keyboard(Player &player);
+	void PollKeyboard(Player &player);
 
 private:
+    bool IsKeyPressed(Key key);
 };

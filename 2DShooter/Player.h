@@ -21,7 +21,8 @@ public:
 	void collision(Player & character, Enemy & foe);
 	void bulletcollision(Player & character, Ebullet &bullet);
 	bool isdead(Player &character,sf::Sound &death);
+    void Reset();
 
 private:
-
+    
 };

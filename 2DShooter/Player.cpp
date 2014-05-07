@@ -4,12 +4,7 @@
 
 Player::Player()
 {
-	health = 100;
-	active = true;
-
-	img.loadFromFile(resourcePath() + "image.png");
-	player.setTexture(img);
-	player.setPosition(80,200);
+	Reset();
 }
 
 void Player::collision(Player & character, Enemy & foe)
@@ -43,7 +38,7 @@ void Player::bulletcollision(Player & character, Ebullet &bullet)
 
 bool Player::isdead(Player &character,sf::Sound &death)
 {
-	//deadimg.loadFromFile("deadplayer.png");
+	deadimg.loadFromFile(resourcePath() + "deadplayer.png");
 	if(character.health <= 0)
 	{
 		if(character.active == true)
@@ -55,4 +50,14 @@ bool Player::isdead(Player &character,sf::Sound &death)
 	}
 
 	return character.active;
+}
+
+void Player::Reset()
+{
+	health = 100;
+	active = true;
+    
+	img.loadFromFile(resourcePath() + "image.png");
+	player.setTexture(img);
+	player.setPosition(80,200);
 }

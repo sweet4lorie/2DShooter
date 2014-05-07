@@ -26,13 +26,17 @@ void Bullet::setpos(std::vector<Bullet> &Bullets, int &num, float x, float y)
 	}
 }
 int Bullet::move(std::vector<Bullet> &Bullets,int num) 
-{ 
+{
+    //sf::Time dt = sf::Clock::restart();
+    
+    //Bullets[0].move(2.0 * dt.asSeconds());
+
 	
     for(int j=0;j<=num;j++)
 	{
 		if(Bullets[j].activeB == true)
 		{
-			Bullets[j].bullets.move(.5f,0);
+			Bullets[j].bullets.move(10.5f,0);
 		}
 	}
 	return num;

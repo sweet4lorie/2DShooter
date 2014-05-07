@@ -30,7 +30,8 @@ public:
 	void collision(Enemy &foe, Bullet &shot);
 	void isdead(Enemy &foe,sf::Sound &death);
     void move(std::vector<Enemy> &foes, int number, int movestyle);
-
+    void Reset();
+    
 private:
 
 };

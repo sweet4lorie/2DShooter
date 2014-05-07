@@ -25,14 +25,14 @@ void Ebullet::setpos(std::vector<Ebullet> &bulls, int &num, float x, float y)
 		num = 0;
 	}
 }
-int Ebullet::move(std::vector<Ebullet> &bulls,int num) 
+int Ebullet::move(std::vector<Ebullet> &bulls,int num, float speed)
 { 
 	
     for(int j=0;j<=num;j++)
 	{
 		if(bulls[j].activeB == true)
 		{
-			bulls[j].bullets.move(-.7f,0);
+			bulls[j].bullets.move(speed,0);
 		}
 	}
 	return num;
