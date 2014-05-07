@@ -21,6 +21,7 @@
 #include "Movement.h"
 #include "BackgroundScroll.h"
 #include <time.h>
+#include "ResourcePath.hpp"
 
 using namespace std;
 
@@ -28,13 +29,14 @@ int main()
 {
 	// Create Window
 	sf::RenderWindow window(sf::VideoMode(800, 600), "Sample Window");
+    window.setFramerateLimit(60);
 
 	// Create background sprite and function variables
 	BGscroll background;
 	int num = 0;
 	srand(time(NULL));
 	int random;
-	int frames = 400;
+	int frames = 60;
 	bool bossbool = false;
 	bool boss_set = false;
 	bool bmove = true;
@@ -43,23 +45,20 @@ int main()
 
 	// Load text
 	sf::Font fonty;
-	fonty.loadFromFile("Verdana.ttf");
+	fonty.loadFromFile(resourcePath() + "Verdana.ttf");
 	
-	sf::Text stext;
-	stext.setFont(fonty);
-	stext.setString("Raging Bullet");
-	stext.setCharacterSize(100);
-	stext.setStyle(sf::Text::Bold);
-	stext.setColor(sf::Color::Red);
-	stext.setPosition(70,180);
+    sf::Texture stextimage;
+    sf::Sprite stext;
+	stextimage.loadFromFile(resourcePath() + "RBtitle.png");
+    stext.setTexture(stextimage);
+    stext.setPosition(70,180);
 
-	sf::Text mtext;
-	mtext.setFont(fonty);
-	mtext.setString("Press Enter to start");
-	mtext.setCharacterSize(36);
-	mtext.setStyle(sf::Text::Bold);
-	mtext.setColor(sf::Color::Cyan);
-	mtext.setPosition(200,400);
+    sf::Texture mtextimage;
+    sf::Sprite mtext;
+	mtextimage.loadFromFile(resourcePath() + "text_entertostart.png");
+    mtext.setTexture(mtextimage);
+    mtext.setPosition(200,400);
+    
 
 	sf::Text wtext;
 	wtext.setFont(fonty);
@@ -79,16 +78,15 @@ int main()
 
 	// Load texture
 	sf::Texture btexture;
-	btexture.loadFromFile("Boss.png");
+	btexture.loadFromFile(resourcePath() + "Boss.png");
 	sf::Texture etexture;
-	etexture.loadFromFile("enemy.png");
+	etexture.loadFromFile(resourcePath() + "enemy.png");
 	sf::Texture deadtexture;
-	deadtexture.loadFromFile("deadplayer.png");
+	deadtexture.loadFromFile(resourcePath() + "deadplayer.png");
 	sf::Texture bull;
-	bull.loadFromFile("bullet.png");
+	bull.loadFromFile(resourcePath() + "bullet.png");
 
 	// Load sounds
-	
 	sf::SoundBuffer sshoot;
 	sf::Sound shoot;
 	sf::SoundBuffer skill;
@@ -167,8 +165,8 @@ int main()
 			// Pause Game
 			if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::P))
 			{
-				printf("numofenemies: %i\n", numofenemies);
-				printf("active1: %d\n active2: %d\n active3: %d\n", enemies[numofenemies-3].active, enemies[numofenemies-2].active, enemies[numofenemies-1].active);
+				//printf("numofenemies: %i\n", numofenemies);
+				//printf("active1: %d\n active2: %d\n active3: %d\n", enemies[numofenemies-3].active, enemies[numofenemies-2].active, enemies[numofenemies-1].active);
 				paused = true;
 				while (paused == true)
 				{
@@ -207,24 +205,24 @@ int main()
 
 		// Spawn enemy
 		random = std::rand();
-		if(1 == (random % 3000))
+		if(1 == (random % 6000))
 		{
 			if(numofenemies <enemynumber)
 			{
 				enemies[numofenemies].spawn(enemies,numofenemies);
 				numofenemies += 1;
-				printf("Spawn enemy # %i\n",numofenemies);
+				//printf("Spawn enemy # %i\n",numofenemies);
 			}
 		}
 
 		// Fire bullets for active enemies
 		for (int i=0;i<numofenemies;i++)
 		{
-			if (i == random % 400)
+			if (i == random % 1000)
 			{
 				if (enemies[i].active == true)
 				{
-					printf("Enemy#%i: fire bullet!\n",i+1);
+					//printf("Enemy#%i: fire bullet!\n",i+1);
 					enemybullets[i].setpos(enemybullets, ebullets, enemies[i].enemy.getPosition().x,enemies[i].enemy.getPosition().y);
 				}
 			}
@@ -248,14 +246,14 @@ int main()
 				// Move boss
 				if ((boss.enemy.getPosition().y <= 450) && (bmove == true))
 				{
-						printf("Up\n");
+						//printf("Up\n");
 						boss.enemy.move(0,-1);
 						if (boss.enemy.getPosition().y == 50)
 							bmove = false;
 				}
 				if ((boss.enemy.getPosition().y >= 50) && (bmove == false))
 				{
-					printf("Down\n");
+					//printf("Down\n");
 					boss.enemy.move(0,1);
 					if (boss.enemy.getPosition().y == 450)
 						bmove = true;
