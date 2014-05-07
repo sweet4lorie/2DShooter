@@ -122,11 +122,11 @@ int main()
             bull.loadFromFile(resourcePath() + "bullet.png");
             
             // Load sounds
-            sdeath.loadFromFile("death.wma");
+            sdeath.loadFromFile(resourcePath() + "death.wav");
             death.setBuffer(sdeath);
-            skill.loadFromFile("dyingenemy.wma");
+            skill.loadFromFile(resourcePath() + "dyingenemy.wav");
             kill.setBuffer(skill);
-            sshoot.loadFromFile("shoot.wma");
+            sshoot.loadFromFile(resourcePath() + "shoot.wav");
             shoot.setBuffer(sshoot);
             
             sprite.Reset();
