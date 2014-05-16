@@ -1,3 +1,11 @@
+// ============================================================================
+// Name: Movement.cpp
+// Date: 5/15/14
+// Programmer: Brian C
+// Description: Control player movement.
+// Details: includes the Movement data structure.
+// ============================================================================
+
 #include "Movement.h"
 
 

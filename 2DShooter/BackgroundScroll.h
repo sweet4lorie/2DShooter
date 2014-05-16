@@ -1,3 +1,11 @@
+// ============================================================================
+// Name: BackgroundScroll.h
+// Date: 5/15/14
+// Programmer: Brian C
+// Description: Control the scroll movement of the background sprite.
+// Details: -
+// ============================================================================
+
 #pragma once
 
 #include <iostream>
@@ -13,7 +21,11 @@ public:
 	float bgX; 
 	sf::Texture bgimg;
 	sf::Sprite bgsprite;
-	void Scroll();
+
 	BGscroll();
+
+	// Scroll the background sprite
+	void Scroll();
+	
 
 };

@@ -1,3 +1,11 @@
+// ============================================================================
+// Name: Movement.h
+// Date: 5/15/14
+// Programmer: Brian C
+// Description: Control player movement.
+// Details: -
+// ============================================================================
+
 #pragma once
 
 #include <iostream>
@@ -13,6 +21,7 @@ typedef sf::Keyboard Keyboard;
 class Movement
 {
 public:
+	// Checks player movement against WASD
 	void PollKeyboard(Player &player);
 
 private:

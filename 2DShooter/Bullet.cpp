@@ -1,3 +1,12 @@
+// ============================================================================
+// Name: Bullet.cpp
+// Date: 5/15/14
+// Programmer: Brian C
+// Description: Control the player bullet movements and collisions. Generate 
+// bullets.
+// Details: includes the Bullet data structure.
+// ============================================================================
+
 #include "Bullet.h"
 // Here is a small helper for you ! Have a look.
 #include "ResourcePath.hpp"

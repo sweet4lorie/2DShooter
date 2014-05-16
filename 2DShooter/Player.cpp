@@ -1,3 +1,11 @@
+// ============================================================================
+// Name: Player.cpp
+// Date: 5/15/14
+// Programmer: Brian C
+// Description: Control player collision and death.
+// Details: includes the Player data structure.
+// ============================================================================
+
 #include "Player.h"
 // Here is a small helper for you ! Have a look.
 #include "ResourcePath.hpp"
