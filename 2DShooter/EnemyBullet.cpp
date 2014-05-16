@@ -1,3 +1,12 @@
+// ============================================================================
+// Name: EnemyBullet.cpp
+// Date: 5/15/14
+// Programmer: Brian C
+// Description: Create and position enemy bullets. Controls bullet movement and
+// collision.
+// Details: includes the Ebullet data structure.
+// ============================================================================
+
 #include "EnemyBullet.h"
 // Here is a small helper for you ! Have a look.
 #include "ResourcePath.hpp"

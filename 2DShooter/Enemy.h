@@ -1,3 +1,12 @@
+// ============================================================================
+// Name: Enemy.h
+// Date: 5/15/14
+// Programmer: Brian C
+// Description: Create and position enemy units. Controls enemy movement and
+// collision.
+// Details: -
+// ============================================================================
+
 #pragma once
 
 #include <iostream>
@@ -29,10 +38,16 @@ public:
     double p_x,p_y; //player location at spawn
     
 	Enemy();
+
+	// Generate enemies
 	void generate(std::vector<Enemy> &foes, int number);
 	void spawn(std::vector<Enemy> &foes, int number);
+
+	// Check collision and death
 	void collision(Enemy &foe, Bullet &shot);
 	void isdead(Enemy &foe,sf::Sound &death);
+
+	// Enemy movement
     void move(std::vector<Enemy> &foes, int number, int movestyle);
     void Reset();
     

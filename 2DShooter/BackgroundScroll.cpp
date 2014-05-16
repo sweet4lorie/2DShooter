@@ -1,3 +1,11 @@
+// ============================================================================
+// Name: BackgroundScroll.cpp
+// Date: 5/15/14
+// Programmer: Brian C
+// Description: Control the scroll movement of the background sprite.
+// Details: includes BGscroll data structure
+// ============================================================================
+
 #include "BackgroundScroll.h"
 // Here is a small helper for you ! Have a look.
 #include "ResourcePath.hpp"

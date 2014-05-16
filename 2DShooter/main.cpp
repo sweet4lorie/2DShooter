@@ -459,7 +459,7 @@ void GotoTitleScreen(sf::RenderWindow *gameWindow)
     gameWindow->draw(mtext);
     gameWindow->display();
     
-    while (!isTitleScreenFinished) //beginning of start menu Eric 5/6
+    while (!isTitleScreenFinished) 
 	{
         while (gameWindow->pollEvent(event))
         {
@@ -477,5 +477,5 @@ void GotoTitleScreen(sf::RenderWindow *gameWindow)
             }
         }
 
-    } //end of start menu Eric 5/6
+    } 
 }

@@ -1,3 +1,11 @@
+// ============================================================================
+// Name: Player.h
+// Date: 5/15/14
+// Programmer: Brian C
+// Description: Control player collision and death.
+// Details: -
+// ============================================================================
+
 #pragma once
 
 #include <iostream>
@@ -12,14 +20,20 @@
 class Player
 {
 public:
+	// player image
 	 sf::Sprite player;
 	 sf::Texture img;
 	 sf::Texture deadimg;
+	 // player variables
 	int health;
 	bool active;
 	Player();
+
+	// Handles Player collision
 	void collision(Player & character, Enemy & foe);
 	void bulletcollision(Player & character, Ebullet &bullet);
+
+	// Handles Player death
 	bool isdead(Player &character,sf::Sound &death);
     void Reset();
 

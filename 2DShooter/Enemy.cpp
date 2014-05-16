@@ -1,3 +1,12 @@
+// ============================================================================
+// Name: Enemy.cpp
+// Date: 5/15/14
+// Programmer: Brian C
+// Description: Create and position enemy units. Controls enemy movement and
+// collision.
+// Details: includes the Enemy data structure.
+// ============================================================================
+
 #include "Enemy.h"
 #include "ResourcePath.hpp"
 
