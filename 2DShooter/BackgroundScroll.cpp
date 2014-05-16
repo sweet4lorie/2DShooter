@@ -7,15 +7,15 @@ BGscroll::BGscroll()
 	bgX = bgsprite.getPosition().x;
 	bgimg.loadFromFile(resourcePath() + "background.png");
 	bgsprite.setTexture(bgimg);
-	bgsprite.setScale(3.0f,3.0f);
+	bgsprite.setScale(1.0f,1.0f);
 	bgsprite.setPosition(0,0);
 }
 
 void BGscroll::Scroll()
 {
-	if (bgX > -400)
+	if (bgX > -800)
 	{
-		bgX -= 0.007f;
+		bgX -= 1.0f;
 	}
 	else
 	{

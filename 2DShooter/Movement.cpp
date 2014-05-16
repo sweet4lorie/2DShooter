@@ -4,6 +4,7 @@
 void Movement::PollKeyboard(Player &player)
 {
     Keyboard keyboard;
+    int movespeed = 15;
     
     
 	if (player.active)
@@ -12,7 +13,7 @@ void Movement::PollKeyboard(Player &player)
         {
             if (player.player.getPosition().x >= 0)
             {
-                player.player.move(-10, 0);
+                player.player.move(-movespeed, 0);
             }
         }
 		
@@ -20,7 +21,7 @@ void Movement::PollKeyboard(Player &player)
         {
             if (player.player.getPosition().x <= 730)
             {
-                player.player.move(10, 0);
+                player.player.move(movespeed, 0);
             }
         }
         
@@ -28,7 +29,7 @@ void Movement::PollKeyboard(Player &player)
         {
             if (player.player.getPosition().y >= 0)
             {
-                player.player.move(0,-10);
+                player.player.move(0,-movespeed);
             }
         }
             
@@ -36,7 +37,7 @@ void Movement::PollKeyboard(Player &player)
         {
             if (player.player.getPosition().y <= 500)
             {
-                player.player.move(0,10);
+                player.player.move(0,movespeed);
             }
         }
 	}

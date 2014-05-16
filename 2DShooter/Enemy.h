@@ -6,7 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>  
 #include <SFML/Window.hpp>
-#include <SFML\System\Clock.hpp>//added by niyaz on 5-16-14
+#include <SFML/System/Clock.hpp>//added by niyaz on 5-16-14
 #include <math.h>//added by niyaz on 5-16-14
 #include <random>
 #include <time.h>

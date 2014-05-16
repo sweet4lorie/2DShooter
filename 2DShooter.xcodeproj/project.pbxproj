@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA1FEFEF1926B6F0004D6C47 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = BA1FEFEE1926B6F0004D6C47 /* background.png */; };
 		BA3425D01919E918002A4F12 /* boss.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3425CD1919E918002A4F12 /* boss.png */; };
 		BA3425D41919EDC0002A4F12 /* RBtitle.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3425D31919EDC0002A4F12 /* RBtitle.png */; };
 		BA3425D61919F6E4002A4F12 /* text_entertostart.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3425D51919F6E4002A4F12 /* text_entertostart.png */; };
@@ -35,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA1FEFEE1926B6F0004D6C47 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		BA1FEFF01926C421004D6C47 /* Arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Arial.ttf; sourceTree = "<group>"; };
 		BA3425CD1919E918002A4F12 /* boss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boss.png; sourceTree = "<group>"; };
 		BA3425D21919EA9E002A4F12 /* Verdana.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Verdana.ttf; sourceTree = "<group>"; };
 		BA3425D31919EDC0002A4F12 /* RBtitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RBtitle.png; sourceTree = "<group>"; };
@@ -112,6 +115,7 @@
 		BAFDEF261917449D00909A33 /* 2DShooter */ = {
 			isa = PBXGroup;
 			children = (
+				BA1FEFF01926C421004D6C47 /* Arial.ttf */,
 				BAFDEF49191745B200909A33 /* Movement.h */,
 				BAFDEF47191745B200909A33 /* EnemyBullet.h */,
 				BAFDEF6D191899E100909A33 /* Enemy.h */,
@@ -149,6 +153,7 @@
 				BA3425E1191A9914002A4F12 /* shoot.wav */,
 				BA3425D51919F6E4002A4F12 /* text_entertostart.png */,
 				BA3425DD191A0CDF002A4F12 /* deadplayer.png */,
+				BA1FEFEE1926B6F0004D6C47 /* background.png */,
 				BA3425CD1919E918002A4F12 /* boss.png */,
 				BA3425D21919EA9E002A4F12 /* Verdana.ttf */,
 				BAFDEF681918903700909A33 /* bullet.png */,
@@ -219,6 +224,7 @@
 			files = (
 				BAFDEF6B1918903700909A33 /* enemybullet.png in Resources */,
 				BAFDEF6519188E5D00909A33 /* plane_down.png in Resources */,
+				BA1FEFEF1926B6F0004D6C47 /* background.png in Resources */,
 				BA3425E4191A9914002A4F12 /* shoot.wav in Resources */,
 				BA3425D81919FA9F002A4F12 /* text_youwon.png in Resources */,
 				BA3425D01919E918002A4F12 /* boss.png in Resources */,

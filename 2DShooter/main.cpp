@@ -14,7 +14,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
-#include <SFML\System\Vector2.hpp>
+//#include <SFML\System\Vector2.hpp>
 #include "Player.h"
 #include "Enemy.h"
 #include "Bullet.h"
@@ -22,7 +22,7 @@
 #include "Movement.h"
 #include "BackgroundScroll.h"
 #include <time.h>
-//#include "ResourcePath.hpp"
+#include "ResourcePath.hpp"
 
 void InitGame();
 void GotoTitleScreen(sf::RenderWindow *gameWindow);
@@ -47,13 +47,15 @@ int main()
 	bool paused;
 
     // Load
-	sf::Font fonty;
+	sf::Text DEMTEXT;
     sf::Texture stextimage;
     sf::Sprite stext;
     sf::Texture mtextimage;
     sf::Sprite mtext;
-    sf::Text wtext;
-    sf::Text ptext;
+    sf::Texture wtextimage;
+    sf::Sprite wtext;
+    sf::Texture ptextimage;
+    sf::Sprite ptext;
 	sf::Texture btexture;
 	sf::Texture etexture;
 	sf::Texture deadtexture;
@@ -81,7 +83,13 @@ int main()
     int ebullets;
     bool isNewGame = true;
     
-
+    sf::Font font;
+    if (!font.loadFromFile(resourcePath() +"Arial.ttf"))
+    {
+        // error...
+    }
+    
+    
     srand(time(NULL));
     
 	while (window.isOpen())
@@ -95,48 +103,49 @@ int main()
             bmove = true;
             paused = false;
             
-            //fonty.loadFromFile(resourcePath() + "Verdana.ttf");
-            fonty.loadFromFile("Verdana.ttf");
-            //textimage.loadFromFile(resourcePath() + "RBtitle.png");
-            stextimage.loadFromFile("RBtitle.png");
+        
+            
+            DEMTEXT.setFont(font);
+            DEMTEXT.setString("HELLO");
+            DEMTEXT.setColor(sf::Color::White);
+            
+            
+            stextimage.loadFromFile(resourcePath() + "RBtitle.png");
+            //stextimage.loadFromFile("RBtitle.png");
             stext.setTexture(stextimage);
             stext.setPosition(70,180);
             
-            //mtextimage.loadFromFile(resourcePath() + "text_entertostart.png");
-            mtextimage.loadFromFile("text_entertostart.png");
+            mtextimage.loadFromFile(resourcePath() + "text_entertostart.png");
+            //mtextimage.loadFromFile("text_entertostart.png");
             mtext.setTexture(mtextimage);
             mtext.setPosition(200,400);
-            
-            wtext.setFont(fonty);
-            wtext.setString("CONGRATULATIONS!!");
-            wtext.setCharacterSize(46);
-            wtext.setStyle(sf::Text::Bold);
-            wtext.setColor(sf::Color::Red);
+
+            wtextimage.loadFromFile(resourcePath() + "text_youwon.png");
+            //mtextimage.loadFromFile("text_entertostart.png");
+            wtext.setTexture(wtextimage);
             wtext.setPosition(310,280);
             
-            ptext.setFont(fonty);
-            ptext.setString("PAUSED");
-            ptext.setCharacterSize(46);
-            ptext.setStyle(sf::Text::Bold);
-            ptext.setColor(sf::Color::Green);
-            ptext.setPosition(310,280);
+            ptextimage.loadFromFile(resourcePath() + "text_pause.png");
+            //mtextimage.loadFromFile("text_entertostart.png");
+            ptext.setTexture(ptextimage);
+            ptext.setPosition(225,260);
             
             // Load texture
-            //btexture.loadFromFile(resourcePath() + "Boss.png");
-            btexture.loadFromFile("Boss.png");
-            //etexture.loadFromFile(resourcePath() + "enemy.png");
-            etexture.loadFromFile("enemy.png");
-            //deadtexture.loadFromFile(resourcePath() + "deadplayer.png");
-            deadtexture.loadFromFile("deadplayer.png");
-            //bull.loadFromFile(resourcePath() + "bullet.png");
-            bull.loadFromFile("bullet.png");
+            btexture.loadFromFile(resourcePath() + "Boss.png");
+            //btexture.loadFromFile("Boss.png");
+            etexture.loadFromFile(resourcePath() + "enemy.png");
+            //etexture.loadFromFile("enemy.png");
+            deadtexture.loadFromFile(resourcePath() + "deadplayer.png");
+            //deadtexture.loadFromFile("deadplayer.png");
+            bull.loadFromFile(resourcePath() + "bullet.png");
+            //bull.loadFromFile("bullet.png");
 
             // Load sounds
-            sdeath.loadFromFile("death.wav");
+            sdeath.loadFromFile(resourcePath() + "death.wav");
             death.setBuffer(sdeath);
-            skill.loadFromFile("dyingenemy.wav");
+            skill.loadFromFile(resourcePath() + "dyingenemy.wav");
             kill.setBuffer(skill);
-            sshoot.loadFromFile("shoot.wav");
+            sshoot.loadFromFile(resourcePath() + "shoot.wav");
             shoot.setBuffer(sshoot);
             
             sprite.Reset();
@@ -146,9 +155,9 @@ int main()
             numofenemies = 0;
             enemynumber = 20;
             enemy.generate(enemies, enemynumber);
-            //enemies.clear(); //why are these here?
-            //Bullets.clear();
-            //enemybullets.clear();
+            enemies.clear(); //why are these here?
+            Bullets.clear();
+            enemybullets.clear();
             
             boss.health = 400;
             boss.active = true;
@@ -224,9 +233,9 @@ int main()
         
 		// Spawn enemy
 		random = std::rand();
-		if(1 == (random % 120))
+		if(1 == (random % 150))
 		{
-			if(numofenemies <enemynumber)
+			if(numofenemies <enemynumber) // number of enemies
 			{
 				enemies[numofenemies].spawn(enemies,numofenemies);
 				numofenemies += 1;
@@ -238,7 +247,7 @@ int main()
         
 		for (int i=0;i<numofenemies;i++)
 		{
-			if (i == random % 60)
+			if (i == random % 50) // number of bullets
 			{
 				if (enemies[i].active == true)
 				{
@@ -408,6 +417,7 @@ int main()
         
 		window.draw(sprite.player);
 		window.draw(boss.enemy);
+        window.draw(DEMTEXT);
 		window.display();
         
         if (!sprite.isdead(sprite,death))
@@ -432,14 +442,14 @@ void GotoTitleScreen(sf::RenderWindow *gameWindow)
     sf::Sprite mtext;
     
     
-	//stextimage.loadFromFile(resourcePath() + "RBtitle.png");
-    stextimage.loadFromFile("RBtitle.png");
+    stextimage.loadFromFile(resourcePath() + "RBtitle.png");
+    //stextimage.loadFromFile("RBtitle.png");
 
     stext.setTexture(stextimage);
     stext.setPosition(70,180);
     
-	//mtextimage.loadFromFile(resourcePath() + "text_entertostart.png");
-    mtextimage.loadFromFile("text_entertostart.png");
+	mtextimage.loadFromFile(resourcePath() + "text_entertostart.png");
+    //mtextimage.loadFromFile("text_entertostart.png");
     mtext.setTexture(mtextimage);
     mtext.setPosition(200,400);
 

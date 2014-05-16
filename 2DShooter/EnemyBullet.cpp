@@ -5,7 +5,7 @@
 void Ebullet::genBullet(std::vector<Ebullet> &bulls)
 {
 	BulletImage.loadFromFile(resourcePath() + "enemybullet.png");
-    for(int i=0;i<= 80;i++)
+    for(int i=0;i<= 180;i++)
 	{
 		Ebullet shell;
 		shell.bullets.setTexture(BulletImage);

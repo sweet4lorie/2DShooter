@@ -1,5 +1,5 @@
 #include "Enemy.h"
-//#include "ResourcePath.hpp"
+#include "ResourcePath.hpp"
 
 Enemy::Enemy() //added argument on 5-5
 {
@@ -7,8 +7,8 @@ Enemy::Enemy() //added argument on 5-5
 }
 void Enemy::generate(std::vector<Enemy> &foes, int number)
 {
-	//imgenemy.loadFromFile(resourcePath() + "enemy.png");
-    imgenemy.loadFromFile("enemy.png");
+	imgenemy.loadFromFile(resourcePath() + "enemy.png");
+    //imgenemy.loadFromFile("enemy.png");
 	for(int i=0;i<= number;i++)
 	{
 		Enemy create;
@@ -22,7 +22,7 @@ void Enemy::generate(std::vector<Enemy> &foes, int number)
 void Enemy::spawn(std::vector<Enemy> &foes, int number)
 {
 	active = true;
-    //spawntime = 0;                                          //added by niyaz on 5-5-14
+    spawntime.restart();                                          //added by niyaz on 5-5-14
     int random = std::rand() % 3;
 	//foes[number].enemy.setPosition(700, random * 200); //changed by niyaz on 5-5-14
     double sx,sy;
@@ -37,21 +37,21 @@ void Enemy::spawn(std::vector<Enemy> &foes, int number)
 
 void Enemy::move(std::vector<Enemy> &Enemies, int number, int movestyle)
 {
-    double x = 0.0;
+    //double x = 0.0;
     double y = 0.0;
     double pi = 3.14159;
-	y = 75*sin(spawntime.getElapsedTime().asSeconds()*pi);
-    x = (700-(spawntime.getElapsedTime().asSeconds()*32));
+	y = (75*sin(spawntime.getElapsedTime().asSeconds()*pi)) - enemy.getPosition().y;
+    //x = (700-(spawntime.getElapsedTime().asSeconds()*32));
     //printf("%lf\n",s_y);
     for(int j=0;j<=number;j++)
 	{
 		if(Enemies[j].active == true)
 		{
-			//Enemies[j].enemy.move(-1.0f,0);
-            Enemies[j].enemy.setPosition(x,y);
+			Enemies[j].enemy.move(-1.0f,y);
+            //Enemies[j].enemy.setPosition(x,y);
             if (j == 1)
             {
-                printf("%1.5lf,%1.5lf:%1.5lf,%1.5lf\n",x,y,s_x,s_y);
+                //printf("%1.5lf,%1.5lf:%1.5lf,%1.5lf\n",x,y,s_x,s_y);
             }
 		}
 	}
