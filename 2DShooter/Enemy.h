@@ -6,10 +6,14 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>  
 #include <SFML/Window.hpp>
+#include <SFML\System\Clock.hpp>//added by niyaz on 5-16-14
+#include <math.h>//added by niyaz on 5-16-14
 #include <random>
 #include <time.h>
 #include <math.h> //added by niyaz on 5-5-14
 #include "Bullet.h"
+
+
 //#include "Player.h"
 
 class Enemy
@@ -19,9 +23,9 @@ public:
 	sf::Texture imgenemy;
 	int health;
 	bool active;
-    
-    clock_t spawntime; //added by niyaz on 5-5-14
-    int spawnpoint; //added by niyaz
+    int spawnpoint;
+    sf::Clock spawntime; //added by niyaz on 5-5-14
+    double s_x,s_y; //added by niyaz
     double p_x,p_y; //player location at spawn
     
 	Enemy();

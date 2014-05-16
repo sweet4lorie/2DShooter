@@ -1,5 +1,5 @@
 #include "Enemy.h"
-#include "ResourcePath.hpp"
+//#include "ResourcePath.hpp"
 
 Enemy::Enemy() //added argument on 5-5
 {
@@ -7,7 +7,8 @@ Enemy::Enemy() //added argument on 5-5
 }
 void Enemy::generate(std::vector<Enemy> &foes, int number)
 {
-	imgenemy.loadFromFile(resourcePath() + "enemy.png");
+	//imgenemy.loadFromFile(resourcePath() + "enemy.png");
+    imgenemy.loadFromFile("enemy.png");
 	for(int i=0;i<= number;i++)
 	{
 		Enemy create;
@@ -22,20 +23,36 @@ void Enemy::spawn(std::vector<Enemy> &foes, int number)
 {
 	active = true;
     //spawntime = 0;                                          //added by niyaz on 5-5-14
-	int random = std::rand() % 3;
-	foes[number].enemy.setPosition(700, random * 200); //changed by niyaz on 5-5-14
-    //foes[number].enemy.setPosition(800, (random*150)+150); //changed by niyaz on 5-5-14
+    int random = std::rand() % 3;
+	//foes[number].enemy.setPosition(700, random * 200); //changed by niyaz on 5-5-14
+    double sx,sy;
+    sx = 700;
+    sy = (random*150)+150;
+    printf("%lf\n",sy);
+    s_x = sx;
+    s_y = sy;
+    foes[number].enemy.setPosition(sx, sy); //changed by niyaz on 5-5-14
                                                            //spawn enemies in the middle, middle of top half or bottom half
 }
 
 void Enemy::move(std::vector<Enemy> &Enemies, int number, int movestyle)
 {
-	
+    double x = 0.0;
+    double y = 0.0;
+    double pi = 3.14159;
+	y = 75*sin(spawntime.getElapsedTime().asSeconds()*pi);
+    x = (700-(spawntime.getElapsedTime().asSeconds()*32));
+    //printf("%lf\n",s_y);
     for(int j=0;j<=number;j++)
 	{
 		if(Enemies[j].active == true)
 		{
-			Enemies[j].enemy.move(-1.0f,0);
+			//Enemies[j].enemy.move(-1.0f,0);
+            Enemies[j].enemy.setPosition(x,y);
+            if (j == 1)
+            {
+                printf("%1.5lf,%1.5lf:%1.5lf,%1.5lf\n",x,y,s_x,s_y);
+            }
 		}
 	}
 }
@@ -72,6 +89,6 @@ void Enemy::Reset()
 {
     health = 20;
 	active = true;
-    //spawntime = 0; //added by niyaz on 5-5-14
     spawnpoint = 1;
+    spawntime.restart();
 }

@@ -14,6 +14,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
+#include <SFML\System\Vector2.hpp>
 #include "Player.h"
 #include "Enemy.h"
 #include "Bullet.h"
@@ -21,7 +22,7 @@
 #include "Movement.h"
 #include "BackgroundScroll.h"
 #include <time.h>
-#include "ResourcePath.hpp"
+//#include "ResourcePath.hpp"
 
 void InitGame();
 void GotoTitleScreen(sf::RenderWindow *gameWindow);
@@ -32,7 +33,7 @@ using namespace std;
 int main()
 {
 	// Create Window
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Raging Bullets");
+	sf::RenderWindow window(sf::VideoMode(800, 600), "Raging Bullet");
     window.setFramerateLimit(60);
 
 	// Create background sprite and function variables
@@ -51,10 +52,8 @@ int main()
     sf::Sprite stext;
     sf::Texture mtextimage;
     sf::Sprite mtext;
-    sf::Texture ptextimage;
-    sf::Sprite ptext;
-    sf::Texture wtextimage;
-    sf::Sprite wtext;
+    sf::Text wtext;
+    sf::Text ptext;
 	sf::Texture btexture;
 	sf::Texture etexture;
 	sf::Texture deadtexture;
@@ -96,37 +95,48 @@ int main()
             bmove = true;
             paused = false;
             
-            fonty.loadFromFile(resourcePath() + "Verdana.ttf");
-            
-            stextimage.loadFromFile(resourcePath() + "RBtitle.png");
+            //fonty.loadFromFile(resourcePath() + "Verdana.ttf");
+            fonty.loadFromFile("Verdana.ttf");
+            //textimage.loadFromFile(resourcePath() + "RBtitle.png");
+            stextimage.loadFromFile("RBtitle.png");
             stext.setTexture(stextimage);
             stext.setPosition(70,180);
             
-            mtextimage.loadFromFile(resourcePath() + "text_entertostart.png");
+            //mtextimage.loadFromFile(resourcePath() + "text_entertostart.png");
+            mtextimage.loadFromFile("text_entertostart.png");
             mtext.setTexture(mtextimage);
-            mtext.setPosition(210,350);
+            mtext.setPosition(200,400);
             
-            wtextimage.loadFromFile(resourcePath() + "text_youwon.png");
-            wtext.setTexture(wtextimage);
-            wtext.setPosition(100,220);
+            wtext.setFont(fonty);
+            wtext.setString("CONGRATULATIONS!!");
+            wtext.setCharacterSize(46);
+            wtext.setStyle(sf::Text::Bold);
+            wtext.setColor(sf::Color::Red);
+            wtext.setPosition(310,280);
             
-            ptextimage.loadFromFile(resourcePath() + "text_pause.png");
-            ptext.setTexture(ptextimage);
-            ptext.setPosition(240,250);
-            
+            ptext.setFont(fonty);
+            ptext.setString("PAUSED");
+            ptext.setCharacterSize(46);
+            ptext.setStyle(sf::Text::Bold);
+            ptext.setColor(sf::Color::Green);
+            ptext.setPosition(310,280);
             
             // Load texture
-            btexture.loadFromFile(resourcePath() + "Boss.png");
-            etexture.loadFromFile(resourcePath() + "enemy.png");
-            deadtexture.loadFromFile(resourcePath() + "deadplayer.png");
-            bull.loadFromFile(resourcePath() + "bullet.png");
-            
+            //btexture.loadFromFile(resourcePath() + "Boss.png");
+            btexture.loadFromFile("Boss.png");
+            //etexture.loadFromFile(resourcePath() + "enemy.png");
+            etexture.loadFromFile("enemy.png");
+            //deadtexture.loadFromFile(resourcePath() + "deadplayer.png");
+            deadtexture.loadFromFile("deadplayer.png");
+            //bull.loadFromFile(resourcePath() + "bullet.png");
+            bull.loadFromFile("bullet.png");
+
             // Load sounds
-            sdeath.loadFromFile(resourcePath() + "death.wav");
+            sdeath.loadFromFile("death.wav");
             death.setBuffer(sdeath);
-            skill.loadFromFile(resourcePath() + "dyingenemy.wav");
+            skill.loadFromFile("dyingenemy.wav");
             kill.setBuffer(skill);
-            sshoot.loadFromFile(resourcePath() + "shoot.wav");
+            sshoot.loadFromFile("shoot.wav");
             shoot.setBuffer(sshoot);
             
             sprite.Reset();
@@ -136,9 +146,9 @@ int main()
             numofenemies = 0;
             enemynumber = 20;
             enemy.generate(enemies, enemynumber);
-            enemies.clear();
-            Bullets.clear();
-            enemybullets.clear();
+            //enemies.clear(); //why are these here?
+            //Bullets.clear();
+            //enemybullets.clear();
             
             boss.health = 400;
             boss.active = true;
@@ -155,18 +165,21 @@ int main()
 
             isNewGame = false;
         }
-        
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
+            
 			if (event.type == sf::Event::Closed)
 				window.close();
             
-            // game genie code: press 0 to spawn boss
+            
 			if (!bossbool && (event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Num0))
             {
                 bossbool = true;
             }
+                
+            // game genie code: press 0 to spawn boss
+            
 
 			// Pause Game
 			if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::P))
@@ -202,13 +215,13 @@ int main()
 				//if (frames >= 60)
 				{
 					shoot.play();
-					Bullets[num].setpos(Bullets,num,sprite.player.getPosition().x,sprite.player.getPosition().y);
+					Bullets[num].setpos(Bullets,num,sprite.player.getPosition().x,sprite.player.getPosition().y-12);
 					frames = 0;
 				}
 			}
 		}
 		frames += 1;
-
+        
 		// Spawn enemy
 		random = std::rand();
 		if(1 == (random % 120))
@@ -220,8 +233,9 @@ int main()
 				//printf("Spawn enemy # %i\n",numofenemies);
 			}
 		}
-
+        
 		// Fire bullets for active enemies
+        
 		for (int i=0;i<numofenemies;i++)
 		{
 			if (i == random % 60)
@@ -229,11 +243,11 @@ int main()
 				if (enemies[i].active == true)
 				{
 					//printf("Enemy#%i: fire bullet!\n",i+1);
-					enemybullets[i].setpos(enemybullets, ebullets, enemies[i].enemy.getPosition().x,enemies[i].enemy.getPosition().y);
+					enemybullets[i].setpos(enemybullets, ebullets, enemies[i].enemy.getPosition().x,enemies[i].enemy.getPosition().y-18);
 				}
 			}
 		}
-
+        
 		// Spawn Boss
 		if (bossbool == true)
 		{
@@ -308,15 +322,15 @@ int main()
                             break;
 						}
 					}
-                    window.clear();
-                    window.draw(background.bgsprite);
-                    window.draw(sprite.player);
-                    window.draw(wtext);
-                    window.display();
+					window.clear();
+					window.draw(background.bgsprite);
+					window.draw(sprite.player);
+					window.draw(wtext);
+					window.display();
 				}
 			}
 		}
-
+        
 		// Check for collision
 		for(int t=0;t<enemynumber;t++)
 		{
@@ -325,13 +339,14 @@ int main()
 		for(int i=0;i<ebullets;i++)
 		{
 			sprite.bulletcollision(sprite, enemybullets[i]);
+            
 		}
 		for(int t=0;t<=num;t++)
 		{
 			for (int j=0;j<enemynumber;j++)
 				enemies[j].collision(enemies[j],Bullets[t]);
 		}
-
+        
 		// Check if enemies are dead
 		for(int t=0;t<=enemynumber;t++)
 		{
@@ -350,7 +365,7 @@ int main()
         {
             isNewGame = true;
         }
-
+        
 		// Move bullets and reset them once offscreen
 		Bullets[num].move(Bullets, num);
 		Bullets[num].reset(Bullets, num);
@@ -370,6 +385,7 @@ int main()
         // Enemy movement
         enemies[enemynumber].move(enemies, enemynumber, 0);
 
+        
 		// Background Scroll
 		background.Scroll();
 
@@ -416,13 +432,16 @@ void GotoTitleScreen(sf::RenderWindow *gameWindow)
     sf::Sprite mtext;
     
     
-	stextimage.loadFromFile(resourcePath() + "RBtitle.png");
+	//stextimage.loadFromFile(resourcePath() + "RBtitle.png");
+    stextimage.loadFromFile("RBtitle.png");
+
     stext.setTexture(stextimage);
     stext.setPosition(70,180);
     
-	mtextimage.loadFromFile(resourcePath() + "text_entertostart.png");
+	//mtextimage.loadFromFile(resourcePath() + "text_entertostart.png");
+    mtextimage.loadFromFile("text_entertostart.png");
     mtext.setTexture(mtextimage);
-    mtext.setPosition(210,350);
+    mtext.setPosition(200,400);
 
     gameWindow->clear();
     gameWindow->draw(background.bgsprite);
