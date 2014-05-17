@@ -37,7 +37,7 @@ int main()
     //================================================================
     
 	// Create Window
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Raging Bullet");
+	sf::RenderWindow window(sf::VideoMode(800, 600), "Raging Bullets");
     window.setFramerateLimit(60);
 
 	// Create background sprite and function variables
