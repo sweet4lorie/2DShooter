@@ -91,7 +91,7 @@ int main()
 	Ebullet shot2;
     int ebullets;
     bool isNewGame = true;
-    
+
     srand(time(NULL));
     
     
@@ -225,7 +225,9 @@ int main()
 		{
             
 			if (event.type == sf::Event::Closed)
+            {
 				window.close();
+            }
             
 			if (!bossbool && (event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Num0))
             {
@@ -241,7 +243,7 @@ int main()
 				//printf("numofenemies: %i\n", numofenemies);
 				//printf("active1: %d\n active2: %d\n active3: %d\n", enemies[numofenemies-3].active, enemies[numofenemies-2].active, enemies[numofenemies-1].active);
 				paused = true;
-				while (paused == true)
+				while (paused == true && window.isOpen())
 				{
 					window.draw(ptext);
 					window.display();
@@ -252,6 +254,10 @@ int main()
 						{
 							paused = false;
 						}
+                        if (unpause.type == sf::Event::Closed)
+                        {
+                            window.close();
+                        }
 					}
 
 				}
@@ -523,7 +529,7 @@ void GotoTitleScreen(sf::RenderWindow *gameWindow)
     gameWindow->draw(mtext);
     gameWindow->display();
     
-    while (!isTitleScreenFinished) 
+    while (!isTitleScreenFinished && gameWindow->isOpen())
 	{
         while (gameWindow->pollEvent(event))
         {
