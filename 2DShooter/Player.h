@@ -25,16 +25,20 @@ public:
 	 sf::Texture img;
 	 sf::Texture deadimg;
 	 // player variables
-	int health;
+	float health;
 	bool active;
 	Player();
+    
+    //handle Lifebar
+    int LifebarSize = 20;
+    int LifebarRatio = 2;
 
 	// Handles Player collision
-	void collision(Player & character, Enemy & foe);
-	void bulletcollision(Player & character, Ebullet &bullet);
+	void collision(Player & character, Enemy & foe, sf::RectangleShape &Lifebar);
+	void bulletcollision(Player & character, Ebullet &bullet, sf::RectangleShape &Lifebar);
 
 	// Handles Player death
-	bool isdead(Player &character,sf::Sound &death);
+	bool isdead(Player &character,sf::Sound &death, sf::RectangleShape &Lifebar);
     void Reset();
 
 private:

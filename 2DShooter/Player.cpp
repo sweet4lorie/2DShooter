@@ -15,7 +15,7 @@ Player::Player()
 	Reset();
 }
 
-void Player::collision(Player & character, Enemy & foe)
+void Player::collision(Player & character, Enemy & foe, sf::RectangleShape &Lifebar)
 {
 	// Bounding box
 	sf::FloatRect boundbox = character.player.getGlobalBounds();
@@ -26,10 +26,11 @@ void Player::collision(Player & character, Enemy & foe)
 	{
 			character.health = character.health - 30;
 			foe.health = foe.health - 20;
+            Lifebar.setSize(sf::Vector2f(character.health*character.LifebarRatio, character.LifebarSize));
 	}
 }
 
-void Player::bulletcollision(Player & character, Ebullet &bullet)
+void Player::bulletcollision(Player & character, Ebullet &bullet, sf::RectangleShape &Lifebar)
 {
 	// Bounding box
 	sf::FloatRect boundbox = character.player.getGlobalBounds();
@@ -41,10 +42,11 @@ void Player::bulletcollision(Player & character, Ebullet &bullet)
 			character.health = character.health - 10;
 			bullet.bullets.setPosition(-40,-40);
 			bullet.activeB = false;
+            Lifebar.setSize(sf::Vector2f(character.health*character.LifebarRatio, character.LifebarSize));
 	}
 }
 
-bool Player::isdead(Player &character,sf::Sound &death)
+bool Player::isdead(Player &character,sf::Sound &death, sf::RectangleShape &Lifebar)
 {
 	deadimg.loadFromFile(resourcePath() + "deadplayer.png");
 	if(character.health <= 0)
@@ -55,6 +57,7 @@ bool Player::isdead(Player &character,sf::Sound &death)
 		}
 		character.player.setTexture(deadimg);
 		character.active = false;
+        Lifebar.setSize(sf::Vector2f(0,0));
 	}
 
 	return character.active;

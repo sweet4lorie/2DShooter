@@ -4,7 +4,7 @@
 // Programmer: Brian C
 // Description: Create and position enemy units. Controls enemy movement and
 // collision.
-// Details: -
+// Details: sin wave handles enemy movement
 // ============================================================================
 
 #pragma once

@@ -14,7 +14,6 @@
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
-//#include <SFML\System\Vector2.hpp>
 #include "Player.h"
 #include "Enemy.h"
 #include "Bullet.h"
@@ -29,9 +28,14 @@ void GotoTitleScreen(sf::RenderWindow *gameWindow);
 
 using namespace std;
 
-
 int main()
 {
+    //================================================================
+    // Load Assets
+    // Description: loads all necessary assets for the start of the
+    // game
+    //================================================================
+    
 	// Create Window
 	sf::RenderWindow window(sf::VideoMode(800, 600), "Raging Bullet");
     window.setFramerateLimit(60);
@@ -47,7 +51,6 @@ int main()
 	bool paused;
 
     // Load
-	sf::Text DEMTEXT;
     sf::Texture stextimage;
     sf::Sprite stext;
     sf::Texture mtextimage;
@@ -66,10 +69,16 @@ int main()
 	sf::SoundBuffer sshoot;
 	sf::SoundBuffer skill;
 	sf::SoundBuffer sdeath;
+    // Lifebar
+    sf::RectangleShape Lifebar;
+    sf::Texture LifebarBGimage;
+    sf::Sprite  LifebarBG;
+    
     // Create Sprite
 	Player sprite;
 	//Player * Ptr = &sprite;
 	Movement movement;
+    
 	// Create "enemy" and boss
 	std::vector<Enemy> enemies;
 	Enemy enemy;
@@ -83,17 +92,16 @@ int main()
     int ebullets;
     bool isNewGame = true;
     
-    sf::Font font;
-    if (!font.loadFromFile(resourcePath() +"Arial.ttf"))
-    {
-        // error...
-    }
-    
-    
     srand(time(NULL));
+    
+    
+    //================
+    // GameLoop
+    //================
     
 	while (window.isOpen())
 	{
+        // resets values for new game
         if (isNewGame)
         {
             num = 0;
@@ -103,42 +111,28 @@ int main()
             bmove = true;
             paused = false;
             
-        
-            
-            DEMTEXT.setFont(font);
-            DEMTEXT.setString("HELLO");
-            DEMTEXT.setColor(sf::Color::White);
-            
-            
+            // Load Text
             stextimage.loadFromFile(resourcePath() + "RBtitle.png");
-            //stextimage.loadFromFile("RBtitle.png");
             stext.setTexture(stextimage);
             stext.setPosition(70,180);
             
             mtextimage.loadFromFile(resourcePath() + "text_entertostart.png");
-            //mtextimage.loadFromFile("text_entertostart.png");
             mtext.setTexture(mtextimage);
             mtext.setPosition(200,400);
 
             wtextimage.loadFromFile(resourcePath() + "text_youwon.png");
-            //mtextimage.loadFromFile("text_entertostart.png");
             wtext.setTexture(wtextimage);
-            wtext.setPosition(310,280);
+            wtext.setPosition(105,190);
             
             ptextimage.loadFromFile(resourcePath() + "text_pause.png");
-            //mtextimage.loadFromFile("text_entertostart.png");
             ptext.setTexture(ptextimage);
             ptext.setPosition(225,260);
             
             // Load texture
             btexture.loadFromFile(resourcePath() + "Boss.png");
-            //btexture.loadFromFile("Boss.png");
             etexture.loadFromFile(resourcePath() + "enemy.png");
-            //etexture.loadFromFile("enemy.png");
             deadtexture.loadFromFile(resourcePath() + "deadplayer.png");
-            //deadtexture.loadFromFile("deadplayer.png");
             bull.loadFromFile(resourcePath() + "bullet.png");
-            //bull.loadFromFile("bullet.png");
 
             // Load sounds
             sdeath.loadFromFile(resourcePath() + "death.wav");
@@ -148,6 +142,50 @@ int main()
             sshoot.loadFromFile(resourcePath() + "shoot.wav");
             shoot.setBuffer(sshoot);
             
+            //LifebarBG
+            LifebarBGimage.loadFromFile(resourcePath() + "LifebarBG.png");
+            LifebarBG.setTexture(LifebarBGimage);
+            LifebarBG.setPosition(505,16);
+            
+            /*
+            // FOR windows load
+            // Load Text
+            stextimage.loadFromFile("RBtitle.png");
+            stext.setTexture(stextimage);
+            stext.setPosition(70,180);
+            
+            mtextimage.loadFromFile("text_entertostart.png");
+            mtext.setTexture(mtextimage);
+            mtext.setPosition(200,400);
+            
+            mtextimage.loadFromFile("text_entertostart.png");
+            wtext.setTexture(wtextimage);
+            wtext.setPosition(105,190);
+            
+            mtextimage.loadFromFile("text_entertostart.png");
+            ptext.setTexture(ptextimage);
+            ptext.setPosition(225,260);
+            
+            // Load texture
+            btexture.loadFromFile("Boss.png");
+            etexture.loadFromFile("enemy.png");
+            deadtexture.loadFromFile("deadplayer.png");
+            bull.loadFromFile("bullet.png");
+             
+            // Load sounds
+            sdeath.loadFromFile("death.wav");
+            death.setBuffer(sdeath);
+            skill.loadFromFile("dyingenemy.wav");
+            kill.setBuffer(skill);
+            sshoot.loadFromFile("shoot.wav");
+            shoot.setBuffer(sshoot);
+             
+            //LifebarBG
+            LifebarBGimage.loadFromFile("LifebarBG.png");
+            LifebarBG.setTexture(LifebarBGimage);
+            LifebarBG.setPosition(500,10);
+            */
+            
             sprite.Reset();
             enemy.Reset();
             boss.Reset();
@@ -155,7 +193,7 @@ int main()
             numofenemies = 0;
             enemynumber = 20;
             enemy.generate(enemies, enemynumber);
-            enemies.clear(); //why are these here?
+            enemies.clear();
             Bullets.clear();
             enemybullets.clear();
             
@@ -166,21 +204,28 @@ int main()
             
             // Generate Bullets
             shot.genBullet(Bullets);
-            
             shot2.genBullet(enemybullets);
             ebullets = 0;
+            
+            // Player Lifebar
+            Lifebar.setFillColor(sf::Color(57, 82, 162));
+            Lifebar.setPosition(565, 30);
+            Lifebar.setSize(sf::Vector2f(sprite.health*sprite.LifebarRatio, sprite.LifebarSize));
             
             GotoTitleScreen(&window);
 
             isNewGame = false;
         }
-		sf::Event event;
+        
+        //================
+        // Event loop
+        //================
+        sf::Event event;
 		while (window.pollEvent(event))
 		{
             
 			if (event.type == sf::Event::Closed)
 				window.close();
-            
             
 			if (!bossbool && (event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Num0))
             {
@@ -228,10 +273,12 @@ int main()
 					frames = 0;
 				}
 			}
-		}
+		} // end event loop
 		frames += 1;
         
-		// Spawn enemy
+        //================
+        // Spawn Enemies
+        //================
 		random = std::rand();
 		if(1 == (random % 150))
 		{
@@ -244,7 +291,6 @@ int main()
 		}
         
 		// Fire bullets for active enemies
-        
 		for (int i=0;i<numofenemies;i++)
 		{
 			if (i == random % 50) // number of bullets
@@ -257,7 +303,9 @@ int main()
 			}
 		}
         
-		// Spawn Boss
+        //================
+        // Spawn Boss
+        //================
 		if (bossbool == true)
 		{
 			// Set Position
@@ -304,10 +352,10 @@ int main()
 					enemybullets[0].setpos(enemybullets, ebullets, boss.enemy.getPosition().x, boss.enemy.getPosition().y);
 				}
 			}
-			sprite.collision(sprite,boss);
+			sprite.collision(sprite,boss, Lifebar);
 			for (int l=0; l < ebullets; l++)
 			{
-				sprite.bulletcollision(sprite,enemybullets[l]);
+				sprite.bulletcollision(sprite,enemybullets[l],Lifebar);
 			}
 			for (int t=0; t<num; t++)
 			{
@@ -333,21 +381,28 @@ int main()
 					}
 					window.clear();
 					window.draw(background.bgsprite);
+                    window.draw(LifebarBG);
+                    window.draw(Lifebar);
 					window.draw(sprite.player);
 					window.draw(wtext);
 					window.display();
 				}
 			}
-		}
+		} // end spawn boxx
+        
+        //================
+        // collision &
+        // movements
+        //================
         
 		// Check for collision
 		for(int t=0;t<enemynumber;t++)
 		{
-			sprite.collision(sprite, enemies[t]);
+			sprite.collision(sprite, enemies[t], Lifebar);
 		}
 		for(int i=0;i<ebullets;i++)
 		{
-			sprite.bulletcollision(sprite, enemybullets[i]);
+			sprite.bulletcollision(sprite, enemybullets[i], Lifebar);
             
 		}
 		for(int t=0;t<=num;t++)
@@ -370,7 +425,7 @@ int main()
 		}
 
 		// Check if player life is 0
-		if (!sprite.isdead(sprite,death))
+		if (!sprite.isdead(sprite,death, Lifebar))
         {
             isNewGame = true;
         }
@@ -394,11 +449,12 @@ int main()
         // Enemy movement
         enemies[enemynumber].move(enemies, enemynumber, 0);
 
-        
 		// Background Scroll
 		background.Scroll();
 
-		// Display
+        //================
+        // Display/Draw
+        //================
 		window.clear();
 		window.draw(background.bgsprite);
 		for (int k=0;k < ebullets; k++)
@@ -415,21 +471,29 @@ int main()
 				window.draw(enemies[t].enemy);
 		}
         
+        window.draw(LifebarBG);
+        window.draw(Lifebar);
 		window.draw(sprite.player);
 		window.draw(boss.enemy);
-        window.draw(DEMTEXT);
 		window.display();
         
-        if (!sprite.isdead(sprite,death))
+        if (!sprite.isdead(sprite,death,Lifebar))
         {
             sf::sleep(sf::seconds(1.5f));
         }
-	}
+	} // end game loop
 
 	return 0;
 
 }
 
+// ============================================================================
+// Name: ReStart Game/GotoTitleScreen
+// Date: 5/16/14
+// Programmer: Emily Chiang
+// Description: Resets and reloads assets for new game
+// Details: -
+// ============================================================================
 
 void GotoTitleScreen(sf::RenderWindow *gameWindow)
 {
