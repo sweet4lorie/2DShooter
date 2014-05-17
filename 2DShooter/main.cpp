@@ -191,7 +191,7 @@ int main()
             boss.Reset();
             
             numofenemies = 0;
-            enemynumber = 20;
+            enemynumber = 30;
             enemy.generate(enemies, enemynumber);
             enemies.clear();
             Bullets.clear();
@@ -229,7 +229,7 @@ int main()
 				window.close();
             }
             
-			if (!bossbool && (event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Num0))
+			if (!bossbool && (((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Num0)) || enemynumber ==0))
             {
                 bossbool = true;
             }
@@ -288,12 +288,16 @@ int main()
 		random = std::rand();
 		if(1 == (random % 150))
 		{
-			if(numofenemies <enemynumber) // number of enemies
+			if(numofenemies < enemynumber) // number of enemies
 			{
 				enemies[numofenemies].spawn(enemies,numofenemies);
 				numofenemies += 1;
 				//printf("Spawn enemy # %i\n",numofenemies);
 			}
+            else
+            {
+                bossbool = true;
+            }
 		}
         
 		// Fire bullets for active enemies
